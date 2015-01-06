@@ -17,7 +17,7 @@ public class DriveTrain extends Subsystem {
     	leftMotors[0] = new Victor(RobotMap.leftMotors[0]);
     	leftMotors[1] = new Victor(RobotMap.leftMotors[1]);
     	rightMotors[0] = new Victor(RobotMap.rightMotors[0]);
-    	rightMotors[2] = new Victor(RobotMap.rightMotors[1]);
+    	rightMotors[1] = new Victor(RobotMap.rightMotors[1]);
     }
     
     // Put methods for controlling this subsystem
@@ -41,7 +41,7 @@ public class DriveTrain extends Subsystem {
     	for(Victor lv : leftMotors) lv.set(leftSpeed);
     	for(Victor rv : rightMotors) rv.set(rightSpeed);
     }
-    
+  
     public void arcadeDrive(){
     	
     }

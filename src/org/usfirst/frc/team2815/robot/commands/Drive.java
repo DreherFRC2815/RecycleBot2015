@@ -1,21 +1,20 @@
 package org.usfirst.frc.team2815.robot.commands;
 
-import java.awt.Robot;
 
-import org.usfirst.frc.team2815.robot.RobotMap;
+import org.usfirst.frc.team2815.robot.subsystems.DriveTrain;
 
-import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.command.Command;
+
 
 /**
  *
  */
 public class Drive extends CommandBase {
-	
+
     public Drive() {
+    	
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	//requires()
+    	//requires(driveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -25,6 +24,7 @@ public class Drive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
