@@ -23,6 +23,8 @@ public class Robot extends IterativeRobot {
 	//public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static final Elevator elevator = new Elevator();
+	public static final Claw claw = new Claw();
+	
 	
 	public static OI oi;
 	
@@ -30,6 +32,7 @@ public class Robot extends IterativeRobot {
     // Command autonomousCommand;
 	Command driveWithJoystick;
 	Command raiseAndLowerElevatorWithJoystick;
+	//Command openAndCloseClawWithJoystick;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -40,7 +43,7 @@ public class Robot extends IterativeRobot {
         // autonomousCommand = new ExampleCommand();
    		driveWithJoystick = new DriveWithJoystick();
    		raiseAndLowerElevatorWithJoystick = new RaiseAndLowerElevatorWithJoystick();
-        
+   		//openAndCloseClawWithJoystick = new OpenAndCloseClawWithJoystick();
     }
 	
 	public void disabledPeriodic() {
@@ -67,6 +70,7 @@ public class Robot extends IterativeRobot {
         // if (autonomousCommand != null) autonomousCommand.cancel();
         driveWithJoystick.start();
         raiseAndLowerElevatorWithJoystick.start();
+        //openAndCloseClawWithJoystick.start();
     	
         
     }

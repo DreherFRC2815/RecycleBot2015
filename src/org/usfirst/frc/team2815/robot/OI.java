@@ -1,6 +1,8 @@
 package org.usfirst.frc.team2815.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -22,6 +24,7 @@ public class OI {
     public double getYspeed(){
     	return flight.getRawAxis(1);
     }
+    Button button1 = new JoystickButton(flight, 1);
     
     // Button button = new JoystickButton(stick, buttonNumber);
     
