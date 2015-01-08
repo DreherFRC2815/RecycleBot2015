@@ -15,6 +15,11 @@ public class RaiseAndLowerElevatorWithJoystick extends Command {
     }
 
     // Called just before this Command runs the first time
+    /**
+     * The command for using the elevator. Will move the elevator up and down according to the Yspeed returned by a Joystick.
+     * @param initialize initializes the command. Uses raiseAndLower from elevator object from Robot class. Uses getYspeed from oi object from
+     * robot class to get the y value of the Joystick. 
+     */
     protected void initialize() {
     	Robot.elevator.raiseAndLower(Robot.oi.getYspeed());
     }
