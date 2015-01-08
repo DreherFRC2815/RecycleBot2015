@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 
-import org.usfirst.frc.team2815.robot.commands.DriveWithJoystick;
-import org.usfirst.frc.team2815.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team2815.robot.commands.*;
+import org.usfirst.frc.team2815.robot.subsystems.*;
 
 
 /**
@@ -22,12 +22,14 @@ public class Robot extends IterativeRobot {
 
 	//public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static final DriveTrain driveTrain = new DriveTrain();
+	public static final Elevator elevator = new Elevator();
 	
 	public static OI oi;
 	
     //public static CommandBase base;
     // Command autonomousCommand;
 	Command driveWithJoystick;
+	Command raiseAndLowerElevatorWithJoystick;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -37,6 +39,7 @@ public class Robot extends IterativeRobot {
         // instantiate the command used for the autonomous period
         // autonomousCommand = new ExampleCommand();
    		driveWithJoystick = new DriveWithJoystick();
+   		raiseAndLowerElevatorWithJoystick = new RaiseAndLowerElevatorWithJoystick();
         
     }
 	
@@ -63,6 +66,7 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         // if (autonomousCommand != null) autonomousCommand.cancel();
         driveWithJoystick.start();
+        raiseAndLowerElevatorWithJoystick.start();
     	
         
     }

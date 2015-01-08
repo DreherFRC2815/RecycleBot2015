@@ -11,13 +11,18 @@ public class OI {
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
     // number it is.
-    Joystick stick = new Joystick(0);
+    Joystick xbox = new Joystick(0);
+    Joystick flight = new Joystick(1);
     public double getLeftSpeed(){
-    	return stick.getRawAxis(1)*-1;
+    	return xbox.getRawAxis(1)*-1;
     }
     public double getRightSpeed(){
-    	return stick.getRawAxis(5);
+    	return xbox.getRawAxis(4);
     }
+    public double getYspeed(){
+    	return flight.getRawAxis(1);
+    }
+    
     // Button button = new JoystickButton(stick, buttonNumber);
     
     
