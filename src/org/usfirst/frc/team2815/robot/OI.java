@@ -24,7 +24,14 @@ public class OI {
     public double getYspeed(){
     	return flight.getRawAxis(1);
     }
-    Button button1 = new JoystickButton(flight, 1);
+    Button button1 = new JoystickButton(flight, 4);
+    Button button2 = new JoystickButton(flight, 5);
+    public boolean getOpenClaw(){
+    	return button1.get();
+    }
+    public boolean getClosedClaw(){
+    	return button2.get();
+    }
     
     // Button button = new JoystickButton(stick, buttonNumber);
     

@@ -17,7 +17,6 @@ public class RobotMap {
 	public static int windowMotor[] = {4,5};
 	
 	public static int clawPiston = 0;
-    
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
     // public static int rangefinderPort = 1;

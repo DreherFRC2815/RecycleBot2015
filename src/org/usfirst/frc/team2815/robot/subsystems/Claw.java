@@ -21,8 +21,11 @@ public class Claw extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public void openAndClose(boolean openorclose){
-    	clawSolenoid.set(openorclose);
+    public void openAndClose(boolean open, boolean close){
+    	if(open)
+    		clawSolenoid.set(true);
+    	else if(close)
+    		clawSolenoid.set(false);
     	
     }
 }

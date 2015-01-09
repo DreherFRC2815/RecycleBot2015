@@ -3,7 +3,7 @@ package org.usfirst.frc.team2815.robot.commands;
 import org.usfirst.frc.team2815.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-
+import org.usfirst.frc.team2815.robot.OI;
 /**
  *
  */
@@ -20,6 +20,7 @@ public class OpenAndCloseClawWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.claw.openAndClose(Robot.oi.getOpenClaw(), Robot.oi.getClosedClaw());
     	//Robot.claw.openAndClose(Robot.oi.button1.);
     }
 
