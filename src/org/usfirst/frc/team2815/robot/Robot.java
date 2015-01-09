@@ -42,7 +42,7 @@ public class Robot extends IterativeRobot {
         // instantiate the command used for the autonomous period
         // autonomousCommand = new ExampleCommand();
    		driveWithJoystick = new DriveWithJoystick();
-   		raiseAndLowerElevatorWithJoystick = new RaiseAndLowerElevatorWithJoystick();
+   		raiseAndLowerElevatorWithJoystick = new RaiseAndLowerElevatorWithFlightStick();
    		//openAndCloseClawWithJoystick = new OpenAndCloseClawWithJoystick();
     }
 	
@@ -71,8 +71,6 @@ public class Robot extends IterativeRobot {
         driveWithJoystick.start();
         raiseAndLowerElevatorWithJoystick.start();
         //openAndCloseClawWithJoystick.start();
-    	
-        
     }
 
     /**
