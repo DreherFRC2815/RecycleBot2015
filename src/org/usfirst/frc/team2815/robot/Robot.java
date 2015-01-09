@@ -32,7 +32,7 @@ public class Robot extends IterativeRobot {
     // Command autonomousCommand;
 	Command driveWithJoystick;
 	Command raiseAndLowerElevatorWithJoystick;
-	//Command openAndCloseClawWithJoystick;
+	Command openAndCloseClawWithJoystick;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -43,7 +43,7 @@ public class Robot extends IterativeRobot {
         // autonomousCommand = new ExampleCommand();
    		driveWithJoystick = new DriveWithJoystick();
    		raiseAndLowerElevatorWithJoystick = new RaiseAndLowerElevatorWithFlightStick();
-   		//openAndCloseClawWithJoystick = new OpenAndCloseClawWithJoystick();
+   		openAndCloseClawWithJoystick = new OpenAndCloseClawWithJoystick();
     }
 	
 	public void disabledPeriodic() {
@@ -70,7 +70,7 @@ public class Robot extends IterativeRobot {
         // if (autonomousCommand != null) autonomousCommand.cancel();
         driveWithJoystick.start();
         raiseAndLowerElevatorWithJoystick.start();
-        //openAndCloseClawWithJoystick.start();
+        openAndCloseClawWithJoystick.start();
     }
 
     /**
