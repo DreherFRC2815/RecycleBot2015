@@ -12,10 +12,11 @@ public class Elevator extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	Victor windowMotor ;
+	private Victor windowMotors[] = new Victor[2];
 	public Elevator(){
 		super("Elevator");
-		windowMotor = new Victor(RobotMap.windowMotor);
+		windowMotors[0] = new Victor(RobotMap.windowMotor[0]);
+		windowMotors[1] = new Victor(RobotMap.windowMotor[1]);
 	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -28,7 +29,8 @@ public class Elevator extends Subsystem {
      * @param yValue value received by raiseAndLower between -1.0 and 1.0
      */
     public void raiseAndLower(double yValue){
-    	windowMotor.set(yValue);
+    	windowMotors[0].set(yValue);
+    	windowMotors[1].set(yValue*-1);
     }
 }
 

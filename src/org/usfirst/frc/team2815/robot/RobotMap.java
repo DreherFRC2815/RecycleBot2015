@@ -14,7 +14,7 @@ public class RobotMap {
     // public static int rightMotor = 2;
 	public static int leftMotors[] = {0,1};
 	public static int rightMotors[] = {2,3};
-	public static int windowMotor = 4;
+	public static int windowMotor[] = {4,5};
 	
 	public static int clawPiston = 0;
     
