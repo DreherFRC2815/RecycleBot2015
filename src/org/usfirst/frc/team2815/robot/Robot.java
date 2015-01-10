@@ -5,7 +5,8 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2815.robot.commands.*;
 import org.usfirst.frc.team2815.robot.subsystems.*;
@@ -28,11 +29,13 @@ public class Robot extends IterativeRobot {
 	
 	public static OI oi;
 	
+	SendableChooser driveChoser;
     //public static CommandBase base;
     // Command autonomousCommand;
 	Command driveWithJoystick;
 	Command raiseAndLowerElevatorWithJoystick;
 	Command openAndCloseClawWithJoystick;
+	
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -41,7 +44,11 @@ public class Robot extends IterativeRobot {
    		oi = new OI();
         // instantiate the command used for the autonomous period
         // autonomousCommand = new ExampleCommand();
-   		driveWithJoystick = new DriveWithJoystick();
+   		//driveWithJoystick = new DriveWithJoystick();
+   		driveChoser = new SendableChooser();
+   		driveChoser.addDefault("H Drive", new hDriveWithJoystick());
+   		driveChoser.addObject("Normal Arcade Drive", new DriveWithJoystick());
+   		SmartDashboard.putData("Drive Types", driveChoser);
    		raiseAndLowerElevatorWithJoystick = new RaiseAndLowerElevatorWithFlightStick();
    		openAndCloseClawWithJoystick = new OpenAndCloseClawWithJoystick();
     }
@@ -68,7 +75,9 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         // if (autonomousCommand != null) autonomousCommand.cancel();
-        driveWithJoystick.start();
+        //driveWithJoystick.start();
+    	driveWithJoystick = (Command) driveChoser.getSelected();
+    	driveWithJoystick.start();
         raiseAndLowerElevatorWithJoystick.start();
         openAndCloseClawWithJoystick.start();
     }
