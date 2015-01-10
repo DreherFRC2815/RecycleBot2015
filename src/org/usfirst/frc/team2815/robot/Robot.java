@@ -46,8 +46,8 @@ public class Robot extends IterativeRobot {
         // autonomousCommand = new ExampleCommand();
    		//driveWithJoystick = new DriveWithJoystick();
    		driveChoser = new SendableChooser();
-   		driveChoser.addDefault("H Drive", new hDriveWithJoystick());
-   		driveChoser.addObject("Normal Arcade Drive", new DriveWithJoystick());
+   		driveChoser.addDefault("H Drive", new HDriveWithJoystick());
+   		driveChoser.addObject("Normal Arcade Drive", new ArcadeDriveWithJoystick());
    		SmartDashboard.putData("Drive Types", driveChoser);
    		raiseAndLowerElevatorWithJoystick = new RaiseAndLowerElevatorWithFlightStick();
    		openAndCloseClawWithJoystick = new OpenAndCloseClawWithJoystick();
