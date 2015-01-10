@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveTrain extends Subsystem {
 	private Victor leftMotors[] = new Victor[2];
 	private Victor rightMotors[] = new Victor[2];
+	private Victor hDriveMotor;
 	private double lTarget;
 	private double rTarget;
 	private double lspeed;
@@ -24,6 +25,7 @@ public class DriveTrain extends Subsystem {
 		leftMotors[1] = new Victor(RobotMap.leftMotors[1]);
 		rightMotors[0] = new Victor(RobotMap.rightMotors[0]);
 		rightMotors[1] = new Victor(RobotMap.rightMotors[1]);
+		hDriveMotor = new Victor(RobotMap.hDriveMotor);
 		ACCEL = .1;
 		rspeed = 0;
 		lspeed = 0;
@@ -101,6 +103,53 @@ public class DriveTrain extends Subsystem {
 			lv.set(lspeed);
 		for (Victor rv : rightMotors)
 			rv.set(rspeed);
+
+	}
+	public void harcadeDrive(double turnValue, double yThrottle, double hDriveValue) {
+		if (Math.abs(yThrottle) < .01) {
+			yThrottle = 0;
+		}
+		lTarget = yThrottle * Math.abs(yThrottle) + turnValue
+				* Math.abs(turnValue) * Math.abs(turnValue);
+		rTarget = yThrottle * Math.abs(yThrottle) - turnValue
+				* Math.abs(turnValue) * Math.abs(turnValue);
+
+		if (lspeed != lTarget) {
+			if (lspeed < lTarget) {
+				lspeed += ACCEL;
+				if (lspeed > lTarget) {
+					lspeed = lTarget;
+				}
+			} else {
+				lspeed -= ACCEL;
+				if (lspeed < lTarget) {
+					lspeed = lTarget;
+				}
+			}
+		}
+
+		if (rspeed != rTarget) {
+			if (rspeed < rTarget) {
+				rspeed += ACCEL;
+				if (rspeed > rTarget) {
+					rspeed = rTarget;
+				}
+			} else {
+				rspeed -= ACCEL;
+				if (rspeed < rTarget) {
+					rspeed = rTarget;
+				}
+			}
+		}
+
+		if (rspeed != 0) {
+			rspeed += 0.03;
+		}
+		for (Victor lv : leftMotors)
+			lv.set(lspeed);
+		for (Victor rv : rightMotors)
+			rv.set(rspeed);
+		hDriveMotor.set(hDriveValue);
 
 	}
 

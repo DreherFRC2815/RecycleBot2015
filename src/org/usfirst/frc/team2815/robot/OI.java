@@ -21,6 +21,23 @@ public class OI {
     public double getRightSpeed(){
     	return xbox.getRawAxis(4);
     }
+    public double getRightTrigger(){
+    	return xbox.getRawAxis(3);
+    }
+    public double getLeftTrigger(){
+    	return xbox.getRawAxis(2);
+    }
+    public double getRightAndLeftTrigger(){
+    	double value = 0;
+    	if(getRightTrigger()>.5){
+    		value += getRightTrigger();
+    	}else if(getLeftTrigger()>.5){
+    		value += getLeftTrigger() *-1;
+    	}else{
+    		value = 0;
+    	}
+    	return value; 
+    }
     public double getYspeed(){
     	return flight.getRawAxis(1);
     }
