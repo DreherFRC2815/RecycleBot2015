@@ -2,7 +2,8 @@ package org.usfirst.frc.team2815.robot.subsystems;
 
 import org.usfirst.frc.team2815.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.Talon;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -12,11 +13,11 @@ public class Elevator extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	private Victor windowMotors[] = new Victor[2];
+	private Talon windowMotors[] = new Talon[2];
 	public Elevator(){
 		super("Elevator");
-		windowMotors[0] = new Victor(RobotMap.windowMotor[0]);
-		windowMotors[1] = new Victor(RobotMap.windowMotor[1]);
+		windowMotors[0] = new Talon(RobotMap.windowMotor[0]);
+		windowMotors[1] = new Talon(RobotMap.windowMotor[1]);
 	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -30,7 +31,7 @@ public class Elevator extends Subsystem {
      */
     public void raiseAndLower(double yValue){
     	windowMotors[0].set(yValue);
-    	windowMotors[1].set(yValue*-1);
+    	windowMotors[1].set(yValue);
     }
 }
 

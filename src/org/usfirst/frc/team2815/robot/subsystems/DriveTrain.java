@@ -3,6 +3,7 @@ package org.usfirst.frc.team2815.robot.subsystems;
 import org.usfirst.frc.team2815.robot.RobotMap;
 import org.usfirst.frc.team2815.robot.commands.ArcadeDriveWithJoystick;
 
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -12,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveTrain extends Subsystem {
 	private Victor leftMotors[] = new Victor[2];
 	private Victor rightMotors[] = new Victor[2];
-	private Victor hDriveMotor;
+	private Talon hDriveMotor;
 	private double lTarget;
 	private double rTarget;
 	private double lspeed;
@@ -25,7 +26,7 @@ public class DriveTrain extends Subsystem {
 		leftMotors[1] = new Victor(RobotMap.leftMotors[1]);
 		rightMotors[0] = new Victor(RobotMap.rightMotors[0]);
 		rightMotors[1] = new Victor(RobotMap.rightMotors[1]);
-		hDriveMotor = new Victor(RobotMap.hDriveMotor);
+		hDriveMotor = new Talon(RobotMap.hDriveMotor);
 		ACCEL = .1;
 		rspeed = 0;
 		lspeed = 0;

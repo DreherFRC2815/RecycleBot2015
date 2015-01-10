@@ -19,7 +19,10 @@ public class OI {
     	return xbox.getRawAxis(1)*-1;
     }
     public double getRightSpeed(){
-    	return xbox.getRawAxis(4);
+    	if(Math.abs(xbox.getRawAxis(4))>0.1)
+    		return xbox.getRawAxis(4);
+    	else 
+    		return 0;
     }
     public double getRightTrigger(){
     	return xbox.getRawAxis(3);
