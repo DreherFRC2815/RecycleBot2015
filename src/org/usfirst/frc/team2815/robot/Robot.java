@@ -27,7 +27,7 @@ import org.usfirst.frc.team2815.robot.subsystems.*;
  * 
  */
 public class Robot extends IterativeRobot {
-	//errors
+	//toruble with the curve
 	//public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static final Elevator elevator = new Elevator();
