@@ -6,26 +6,33 @@ import edu.wpi.first.wpilibj.command.Command;
 
 
 /**
+ * This Command Class requires the DriveTrain subsystem to drive the
+ * robot using the arcade drive type with a joystick. The execute method calls the drive type
+ * method in the sub system. This command runs until it is interrupted 
+ * because the isFinished method always returns false. This class uses requires the Robot 
+ * class, the OI class, and the DriveTrain Class.
+ * 
+ * @see Robot
  *
  */
 public class ArcadeDriveWithJoystick extends Command {
-
+	/**
+     * This function is run when the class is initialized and should be
+     * used for any initialization code. This Class also Specifies the
+     * particular subsystem this command requires().
+     */
     public ArcadeDriveWithJoystick() {
-        // Use requires() here to declare subsystem dependencies
-    	
-        
         requires(Robot.driveTrain);
         
     }
 
-    // Called just before this Command runs the first time
+    //Called just before this Command runs the first time
     protected void initialize() {
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//Robot.driveTrain.tankDrive(Robot.oi.getLeftSpeed(),Robot.oi.getRightSpeed());
     	Robot.driveTrain.arcadeDrive(Robot.oi.getLeftSpeed(),Robot.oi.getRightSpeed());
     }
 

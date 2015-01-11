@@ -7,7 +7,11 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *@param Elevator is the elevator Subsystem
+ *This SubSystem Class initializes motor objects and sets these 
+ *variables to different speeds based on the method. Uses the methods
+ *to raise and lower the elevator. The Subsystem gets motor ports from the RobotMap.
+ *
+ *@see RobotMap
  */
 public class Elevator extends Subsystem {
     
@@ -31,8 +35,8 @@ public class Elevator extends Subsystem {
     }
     /**
      * Moves the elevator platform up and down according to the value of yValue. Uses a windowmotor.
-     * @param raiseAndLower takes in a value and sets a window motor to that speed
-     * @param yValue value received by raiseAndLower between -1.0 and 1.0
+     * 
+     * @param yValue <code>double</code> value between -1.0 and 1.0 used to set the motor speed
      */
     public void raiseAndLower(double yValue){
     	windowMotors[0].set(yValue);
