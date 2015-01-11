@@ -20,7 +20,7 @@ import org.usfirst.frc.team2815.robot.subsystems.*;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
+	//errors
 	//public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static final Elevator elevator = new Elevator();
