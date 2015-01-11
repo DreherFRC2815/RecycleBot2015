@@ -9,27 +9,47 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    //// CREATING BUTTONS
-    // One type of button is a joystick button which is any button on a joystick.
-    // You create one by telling it which joystick it's on and which button
-    // number it is.
+	
     Joystick xbox = new Joystick(0);
     Joystick flight = new Joystick(1);
+    Button button1 = new JoystickButton(flight, 4);
+    Button button2 = new JoystickButton(flight, 5);
+    
+    /**
+     * @return double returns the value of the left stick y-axis of the Xbox controller at port 1
+     */
     public double getLeftSpeed(){
     	return xbox.getRawAxis(1)*-1;
     }
+    /**
+     * @return double returns the value of the right stick x-axis of the Xbox controller at port 4
+     */
     public double getRightSpeed(){
     	if(Math.abs(xbox.getRawAxis(4))>0.1)
     		return xbox.getRawAxis(4);
     	else 
     		return 0;
     }
+    /** 
+     * @return double gets the right trigger value of the Xbox controller at port 3
+     */
     public double getRightTrigger(){
     	return xbox.getRawAxis(3);
     }
+    /**
+     * @return double gets the left trigger value of the Xbox controller at port 2
+     */
     public double getLeftTrigger(){
     	return xbox.getRawAxis(2);
     }
+    /**
+     * This method returns the value of both the right and left trigger by
+     * getting the right and left trigger values, inverting one and 
+     * adding the values to a single variable. This method is used to allow
+     * the HDriveWithJoystick method to take in one varriable for the h drive motor.
+     * 
+     * @return double gets the value of the right and left trigger
+     */
     public double getRightAndLeftTrigger(){
     	double value = 0;
     	if(getRightTrigger()>.5){
@@ -41,39 +61,26 @@ public class OI {
     	}
     	return value; 
     }
+    /**
+     * @return double returns the y-axis value of the Flight joystick at port 1
+     */
     public double getYspeed(){
     	return flight.getRawAxis(1);
     }
-    Button button1 = new JoystickButton(flight, 4);
-    Button button2 = new JoystickButton(flight, 5);
+  
+    /**
+     * @return boolean returns the value of button on port 4 on the Flight joystick
+     */
     public boolean getOpenClaw(){
     	return button1.get();
     }
+    /**
+     * @return boolean returns the value of button on port 5 on the Flight joystick
+     */
     public boolean getClosedClaw(){
     	return button2.get();
     }
     
-    // Button button = new JoystickButton(stick, buttonNumber);
-    
-    
-    // There are a few additional built in buttons you can use. Additionally,
-    // by subclassing Button you can create custom triggers and bind those to
-    // commands the same as any other Button.
-    
-    //// TRIGGERING COMMANDS WITH BUTTONS
-    // Once you have a button, it's trivial to bind it to a button in one of
-    // three ways:
-    
-    // Start the command when the button is pressed and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenPressed(new ExampleCommand());
-    
-    // Run the command while the button is being held down and interrupt it once
-    // the button is released.
-    // button.whileHeld(new ExampleCommand());
-    
-    // Start the command when the button is released  and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenReleased(new ExampleCommand());
+
 }
 

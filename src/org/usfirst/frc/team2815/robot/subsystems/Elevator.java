@@ -11,17 +11,22 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Elevator extends Subsystem {
     
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+    
 	private Talon windowMotors[] = new Talon[2];
+	/**
+     * This function is run when the class is initialized and should be
+     * used for any initialization code.
+     */
 	public Elevator(){
 		super("Elevator");
 		windowMotors[0] = new Talon(RobotMap.windowMotor[0]);
 		windowMotors[1] = new Talon(RobotMap.windowMotor[1]);
 	}
+	/** Set the default command for a subsystem here.
+     * setDefaultCommand(new MySpecialCommand());
+     */
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+       
     	
     }
     /**

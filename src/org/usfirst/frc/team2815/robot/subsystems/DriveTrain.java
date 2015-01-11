@@ -1,7 +1,8 @@
 package org.usfirst.frc.team2815.robot.subsystems;
 
 import org.usfirst.frc.team2815.robot.RobotMap;
-import org.usfirst.frc.team2815.robot.commands.ArcadeDriveWithJoystick;
+
+import org.usfirst.frc.team2815.robot.commands.HDriveWithJoystick;
 
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Victor;
@@ -19,7 +20,11 @@ public class DriveTrain extends Subsystem {
 	private double lspeed;
 	private double rspeed;
 	private final double ACCEL;
-
+	
+	/**
+     * This function is run when the class is initialized and should be
+     * used for any initialization code.
+     */
 	public DriveTrain() {
 		super("Drive Train");
 		leftMotors[0] = new Victor(RobotMap.leftMotors[0]);
@@ -32,12 +37,12 @@ public class DriveTrain extends Subsystem {
 		lspeed = 0;
 	}
 
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
-
+	/** Set the default command for a subsystem here.
+     * setDefaultCommand(new MySpecialCommand());
+     */
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		setDefaultCommand(new ArcadeDriveWithJoystick());
+		
+		setDefaultCommand(new HDriveWithJoystick());
 	}
 
 	/**
@@ -59,7 +64,12 @@ public class DriveTrain extends Subsystem {
 		for (Victor rv : rightMotors)
 			rv.set(rightSpeed);
 	}
-
+	/**
+	 * This method takes in two doubles that comprise our arcade drive and sets
+	 * the left and right motor values.
+	 * @param turnValue a double for the turn value
+	 * @param yThrottle a double for the y-Throttle speed
+	 */
 	public void arcadeDrive(double turnValue, double yThrottle) {
 		if (Math.abs(yThrottle) < .01) {
 			yThrottle = 0;
@@ -106,6 +116,14 @@ public class DriveTrain extends Subsystem {
 			rv.set(rspeed);
 
 	}
+	/**
+	 * Acts the same as arcade drive but also takes in a value for the
+	 * h drive motor that allows the robot to strafe side to side
+	 * 
+	 * @param turnValue a double for the turn value
+	 * @param yThrottle a double for the y-Throttle speed
+	 * @param hDriveValue a double for the value of the H-drive
+	 */
 	public void harcadeDrive(double turnValue, double yThrottle, double hDriveValue) {
 		if (Math.abs(yThrottle) < .01) {
 			yThrottle = 0;
