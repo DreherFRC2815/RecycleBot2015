@@ -9,9 +9,8 @@ import edu.wpi.first.wpilibj.command.Command;
  * from OI. The execute method does not stop running unless it is interrupted because 
  * the isFinished method always returns false.This class uses requires the Robot 
  * class, the OI class, and the Claw class.
- * @see Claw
+ *
  * @see Robot
- * @see OI
  *
  */
 public class OpenAndCloseClawWithJoystick extends Command {

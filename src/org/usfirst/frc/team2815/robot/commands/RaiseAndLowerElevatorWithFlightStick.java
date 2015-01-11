@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.command.Command;
  *joystick value from OI. The command only ends when it is interrupted because
  *the isFinished method only returns false.This class uses requires the Robot 
  * class, the OI class, and the Elevator Class.
- * @see Elevator
+ * 
  * @see Robot
- * @see OI
+ * 
  */
 public class RaiseAndLowerElevatorWithFlightStick extends Command {
 	/**

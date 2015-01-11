@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
  * method in the sub system. This command runs until it is interrupted 
  * because the isFinished method always returns false. This class uses requires the Robot 
  * class, the OI class, and the DriveTrain Class.
- * @see DriveTrain
+ * 
  * @see Robot
- * @see OI
+ *
  */
 public class ArcadeDriveWithJoystick extends Command {
 	/**

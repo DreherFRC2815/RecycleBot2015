@@ -9,7 +9,11 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
+ *This SubSystem Class initializes motor objects and sets these 
+ *variables to different speeds based on the method. This class sets the
+ *values of the drive motors based on the drive type. The Subsystem gets motor ports from the RobotMap.
  *
+ *@see RobotMap
  */
 public class DriveTrain extends Subsystem {
 	private Victor leftMotors[] = new Victor[2];
@@ -51,9 +55,9 @@ public class DriveTrain extends Subsystem {
 	 * <p>
 	 * 
 	 * @param leftSpeed
-	 *            a double that sets the left motor speed
+	 *            <code>double</code> that sets the left motor speed
 	 * @param rightSpeed
-	 *            a double that sets the right motor speed
+	 *            <code>double</code> that sets the right motor speed
 	 * @return void
 	 * @see Drive
 	 */
@@ -67,8 +71,8 @@ public class DriveTrain extends Subsystem {
 	/**
 	 * This method takes in two doubles that comprise our arcade drive and sets
 	 * the left and right motor values.
-	 * @param turnValue a double for the turn value
-	 * @param yThrottle a double for the y-Throttle speed
+	 * @param turnValue <code>double</code> for the turn value
+	 * @param yThrottle <code>double</code> for the y-Throttle speed
 	 */
 	public void arcadeDrive(double turnValue, double yThrottle) {
 		if (Math.abs(yThrottle) < .01) {
@@ -120,9 +124,9 @@ public class DriveTrain extends Subsystem {
 	 * Acts the same as arcade drive but also takes in a value for the
 	 * h drive motor that allows the robot to strafe side to side
 	 * 
-	 * @param turnValue a double for the turn value
-	 * @param yThrottle a double for the y-Throttle speed
-	 * @param hDriveValue a double for the value of the H-drive
+	 * @param turnValue <code>double</code> for the turn value
+	 * @param yThrottle <code>double</code> for the y-Throttle speed
+	 * @param hDriveValue <code>double</code> for the value of the H-drive
 	 */
 	public void harcadeDrive(double turnValue, double yThrottle, double hDriveValue) {
 		if (Math.abs(yThrottle) < .01) {

@@ -17,7 +17,14 @@ import org.usfirst.frc.team2815.robot.subsystems.*;
  * functions corresponding to each mode, as described in the IterativeRobot
  * documentation. If you change the name of this class or the package after
  * creating this project, you must also update the manifest file in the resource
- * directory.
+ * directory. This class also initializes all Subsystems and the Robots operator
+ * interface or OI
+ * 
+ * @see OI
+ * @see DriveTrain
+ * @see Elevator
+ * @see Claw
+ * 
  */
 public class Robot extends IterativeRobot {
 

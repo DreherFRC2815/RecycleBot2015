@@ -6,7 +6,11 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
+ *This SubSystem Class initializes motor variables and uses methods to open and closes the 
+ *Claw System on the robot. The Subsystem gets motor ports from the RobotMap.
  *
+ *@see RobotMap
+ * 
  */
 public class Claw extends Subsystem {
     Solenoid clawSolenoid[] = new Solenoid[2];
@@ -29,8 +33,8 @@ public class Claw extends Subsystem {
     }
     /**
      * This method uses boolean logic to open and close out double acting claw solenoid
-     * @param open	a boolean if true the clawSoleonid[0] is set to true and clawSolenoid[1] is set to false
-     * @param close	a boolean if true the clawSoleonid[0] is set to false and clawSolenoid[1] is set to true
+     * @param open	<code>boolean</code> if true the clawSoleonid[0] is set to true and clawSolenoid[1] is set to false
+     * @param close	<code>boolean</code> if true the clawSoleonid[0] is set to false and clawSolenoid[1] is set to true
      */
     public void openAndClose(boolean open, boolean close){
     	if(open){
