@@ -5,12 +5,22 @@ import org.usfirst.frc.team2815.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *This Command Class requires the Elevator Sybsystem to raise and lower the elevator
+ *with the flight joystick. The execute method raises and lowers the elevator based on the 
+ *joystick value from OI. The command only ends when it is interrupted because
+ *the isFinished method only returns false.This class uses requires the Robot 
+ * class, the OI class, and the Elevator Class.
+ * @see Elevator
+ * @see Robot
+ * @see OI
  */
 public class RaiseAndLowerElevatorWithFlightStick extends Command {
-
+	/**
+     * This function is run when the class is initialized and should be
+     * used for any initialization code. This Class also Specifies the
+     * particular subsystem this command requires().
+     */
     public RaiseAndLowerElevatorWithFlightStick() {
-        // Use requires() here to declare subsystem dependencies
          requires(Robot.elevator);
     }
 

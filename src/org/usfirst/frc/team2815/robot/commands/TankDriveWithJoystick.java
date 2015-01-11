@@ -5,14 +5,23 @@ import org.usfirst.frc.team2815.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * This Command Class requires the DriveTrain subsystem to drive the
+ * robot using the tank drive type with a joystick. The execute method calls the drive type
+ * method in the sub system. This command runs until it is interrupted 
+ * because the isFinished method always returns false. This class uses requires the Robot 
+ * class, the OI class, and the DriveTrain Class.
+ * @see DriveTrain
+ * @see Robot
+ * @see OI
  */
 public class TankDriveWithJoystick extends Command {
-
+	/**
+     * This function is run when the class is initialized and should be
+     * used for any initialization code. This Class also Specifies the
+     * particular subsystem this command requires().
+     */
     public TankDriveWithJoystick() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.driveTrain);
+        requires(Robot.driveTrain);
 
     }
 
