@@ -175,6 +175,10 @@ public class DriveTrain extends Subsystem {
 		hDriveMotor.set(hDriveValue);
 
 	}
+	
+	public void setHDriveMotor(double speed){
+		hDriveMotor.set(speed);
+	}
 
 }
 

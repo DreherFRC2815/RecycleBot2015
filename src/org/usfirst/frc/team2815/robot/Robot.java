@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team2815.robot.autocommands.BasicAuto;
 import org.usfirst.frc.team2815.robot.commands.*;
 import org.usfirst.frc.team2815.robot.subsystems.*;
 
@@ -37,11 +38,13 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	
 	SendableChooser driveChoser;
+	SendableChooser autoChoser;
     //public static CommandBase base;
-    // Command autonomousCommand;
+    Command autonomousCommand;
 	Command driveWithJoystick;
 	Command raiseAndLowerElevatorWithJoystick;
 	Command openAndCloseClawWithJoystick;
+
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -57,8 +60,16 @@ public class Robot extends IterativeRobot {
    		driveChoser.addObject("Normal Arcade Drive", new ArcadeDriveWithJoystick());
    		driveChoser.addObject("Tank Drive", new TankDriveWithJoystick());
    		SmartDashboard.putData("Drive Types", driveChoser);
+   		
+   		autoChoser = new SendableChooser();
+   		autoChoser.addDefault("Basic Auto", new BasicAuto());
+   		
+   		SmartDashboard.putData("Autonomous", autoChoser);
+   		
+   		
    		raiseAndLowerElevatorWithJoystick = new RaiseAndLowerElevatorWithFlightStick();
    		openAndCloseClawWithJoystick = new OpenAndCloseClawWithJoystick();
+   		
     }
 	
 	public void disabledPeriodic() {
@@ -68,6 +79,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         // if (autonomousCommand != null) autonomousCommand.start();
+    	autonomousCommand = (Command) autoChoser.getSelected();
     }
 
     /**
