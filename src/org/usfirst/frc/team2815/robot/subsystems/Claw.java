@@ -32,7 +32,7 @@ public class Claw extends Subsystem {
         
     }
     /**
-     * This method uses boolean logic to open and close out double acting claw solenoid
+     * This method uses boolean logic to open and close out double acting claw Solenoid
      * @param open	<code>boolean</code> if true the clawSoleonid[0] is set to true and clawSolenoid[1] is set to false
      * @param close	<code>boolean</code> if true the clawSoleonid[0] is set to false and clawSolenoid[1] is set to true
      */
@@ -46,5 +46,6 @@ public class Claw extends Subsystem {
     		clawSolenoid[1].set(true);
 		}
     }
+   
 }
 
