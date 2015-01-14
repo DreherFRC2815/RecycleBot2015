@@ -19,7 +19,10 @@ public class OI {
      * @return double returns the value of the left stick y-axis of the Xbox controller at port 1
      */
     public double getLeftSpeed(){
-    	return xbox.getRawAxis(1)*-1;
+    	if(Math.abs(xbox.getRawAxis(1))>0.1)
+    		return xbox.getRawAxis(1)*-1;
+    	else 
+    		return 0;
     }
     /**
      * @return double returns the value of the right stick x-axis of the Xbox controller at port 4
