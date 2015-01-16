@@ -14,6 +14,6 @@ public class RobotMap {
 	public static int windowMotor[] = {5,6};
 	public static int hDriveMotor = 4;
 	public static int clawPiston[] = {0,1};
-
+	public static int encoder[] = {0,1};
 	
 }

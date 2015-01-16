@@ -1,12 +1,14 @@
 package org.usfirst.frc.team2815.robot.subsystems;
 
 import org.usfirst.frc.team2815.robot.RobotMap;
-
 import org.usfirst.frc.team2815.robot.commands.HDriveWithJoystick;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *This SubSystem Class initializes motor objects and sets these 
@@ -15,7 +17,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  *@see RobotMap
  */
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends PIDSubsystem {
 	private Victor leftMotors[] = new Victor[2];
 	private Victor rightMotors[] = new Victor[2];
 	private Talon hDriveMotor;
@@ -24,13 +26,14 @@ public class DriveTrain extends Subsystem {
 	private double lspeed;
 	private double rspeed;
 	private final double ACCEL;
+	private Encoder encoder;
 	
 	/**
      * This function is run when the class is initialized and should be
      * used for any initialization code.
      */
 	public DriveTrain() {
-		super("Drive Train");
+		super("Drive Train",3,2,0);
 		leftMotors[0] = new Victor(RobotMap.leftMotors[0]);
 		leftMotors[1] = new Victor(RobotMap.leftMotors[1]);
 		rightMotors[0] = new Victor(RobotMap.rightMotors[0]);
@@ -39,6 +42,8 @@ public class DriveTrain extends Subsystem {
 		ACCEL = .1;
 		rspeed = 0;
 		lspeed = 0;
+		encoder = new Encoder(RobotMap.encoder[0], RobotMap.encoder[1],false, Encoder.EncodingType.k4X);
+		encoder.setDistancePerPulse(4*Math.PI);
 	}
 
 	/** Set the default command for a subsystem here.
@@ -178,6 +183,18 @@ public class DriveTrain extends Subsystem {
 	
 	public void setHDriveMotor(double speed){
 		hDriveMotor.set(speed);
+	}
+
+	@Override
+	protected double returnPIDInput() {
+		// TODO Auto-generated method stub
+		return encoder.pidGet();
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		// TODO Auto-generated method stub
+		SmartDashboard.putNumber("PID Value", output);
 	}
 
 }
