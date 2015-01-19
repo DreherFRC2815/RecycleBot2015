@@ -66,7 +66,6 @@ public class Robot extends IterativeRobot {
    		
    		SmartDashboard.putData("Autonomous", autoChoser);
    		
-   		
    		raiseAndLowerElevatorWithJoystick = new RaiseAndLowerElevatorWithFlightStick();
    		openAndCloseClawWithJoystick = new OpenAndCloseClawWithJoystick();
    		
@@ -100,6 +99,7 @@ public class Robot extends IterativeRobot {
     	driveWithJoystick.start();
         raiseAndLowerElevatorWithJoystick.start();
         openAndCloseClawWithJoystick.start();
+    
     }
 
     /**

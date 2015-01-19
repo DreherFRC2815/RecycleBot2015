@@ -2,8 +2,8 @@ package org.usfirst.frc.team2815.robot.subsystems;
 
 import org.usfirst.frc.team2815.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -17,6 +17,7 @@ public class Elevator extends Subsystem {
     
     
 	private Talon windowMotors[] = new Talon[2];
+	private DigitalInput limitSwitch;
 	/**
      * This function is run when the class is initialized and should be
      * used for any initialization code.
@@ -25,6 +26,8 @@ public class Elevator extends Subsystem {
 		super("Elevator");
 		windowMotors[0] = new Talon(RobotMap.windowMotor[0]);
 		windowMotors[1] = new Talon(RobotMap.windowMotor[1]);
+		limitSwitch = new DigitalInput(RobotMap.elevatorSwitch);
+		
 	}
 	/** Set the default command for a subsystem here.
      * setDefaultCommand(new MySpecialCommand());
@@ -41,6 +44,9 @@ public class Elevator extends Subsystem {
     public void raiseAndLower(double yValue){
     	windowMotors[0].set(yValue);
     	windowMotors[1].set(yValue);
+    }
+    public boolean getLimitSwitchValue(){
+    	return limitSwitch.get();
     }
    
 }
