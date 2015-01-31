@@ -14,7 +14,7 @@ public class OI {
     Joystick flight = new Joystick(1);
     Button button1 = new JoystickButton(flight, 4);
     Button button2 = new JoystickButton(flight, 5);
-    
+    Button hyperBoost = new JoystickButton(xbox, 2);
     /**
      * @return double returns the value of the left stick y-axis of the Xbox controller at port 1 w/ correction for dead zone
      */
@@ -45,11 +45,12 @@ public class OI {
     public double getLeftTrigger(){
     	return xbox.getRawAxis(2);
     }
+    
     /**
      * This method returns the value of both the right and left trigger by
      * getting the right and left trigger values, inverting one and 
      * adding the values to a single variable. This method is used to allow
-     * the HDriveWithJoystick method to take in one varriable for the h drive motor.
+     * the HDriveWithJoystick method to take in one variable for the h drive motor.
      * 
      * @return double gets the value of the right and left trigger
      */
@@ -64,11 +65,15 @@ public class OI {
     	}
     	return value; 
     }
+    
     /**
      * @return double returns the y-axis value of the Flight joystick at port 1
      */
     public double getYspeed(){
-    	return flight.getRawAxis(1);
+    	if(Math.abs(flight.getRawAxis(1)) > .1)
+    		return flight.getRawAxis(1);
+    	else
+    		return 0;
     }
   
     /**
@@ -84,6 +89,10 @@ public class OI {
     	return button2.get();
     }
     
+    public boolean getBoost(){
+    
+    	return hyperBoost.get();
+    }
 
 }
 

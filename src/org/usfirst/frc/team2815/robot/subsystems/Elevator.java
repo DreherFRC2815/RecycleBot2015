@@ -17,7 +17,7 @@ public class Elevator extends Subsystem {
     
     
 	private Talon windowMotors[] = new Talon[2];
-	private DigitalInput limitSwitch;
+	private DigitalInput limitSwitch[] = new DigitalInput[2];
 	/**
      * This function is run when the class is initialized and should be
      * used for any initialization code.
@@ -26,7 +26,8 @@ public class Elevator extends Subsystem {
 		super("Elevator");
 		windowMotors[0] = new Talon(RobotMap.windowMotor[0]);
 		windowMotors[1] = new Talon(RobotMap.windowMotor[1]);
-		limitSwitch = new DigitalInput(RobotMap.elevatorSwitch);
+		limitSwitch[0] = new DigitalInput(RobotMap.elevatorSwitch[0]);
+		limitSwitch[1] = new DigitalInput(RobotMap.elevatorSwitch[1]);
 		
 	}
 	/** Set the default command for a subsystem here.
@@ -45,9 +46,36 @@ public class Elevator extends Subsystem {
     	windowMotors[0].set(yValue);
     	windowMotors[1].set(yValue);
     }
-    public boolean getLimitSwitchValue(){
-    	return limitSwitch.get();
+    public boolean getLimitSwitchValueTop(){
+    	return limitSwitch[0].get();
     }
-   
+    public boolean getLimitSwitchValueBot(){
+    	return limitSwitch[1].get();
+    }
+
+	public void raiseAndLowerWithJoystick(double yValue) {
+		while (this.getLimitSwitchValueTop() == true) {
+			if (yValue < 0) {
+				windowMotors[0].set(0);
+				windowMotors[1].set(0);
+			} else {
+				windowMotors[0].set(yValue);
+				windowMotors[1].set(yValue);
+			}
+		}
+		while (this.getLimitSwitchValueBot() == true) {
+			if (yValue > 0) {
+				windowMotors[0].set(0);
+				windowMotors[1].set(0);
+			}else{
+				windowMotors[0].set(yValue);
+				windowMotors[1].set(yValue);			
+			}
+		}
+		windowMotors[0].set(yValue);
+		windowMotors[1].set(yValue);  
+
+	}
+
 }
 

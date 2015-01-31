@@ -28,7 +28,7 @@ import org.usfirst.frc.team2815.robot.subsystems.*;
  * 
  */
 public class Robot extends IterativeRobot {
-	//toruble with the curve
+	//trouble with the curve
 	//public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static final Elevator elevator = new Elevator();
@@ -94,8 +94,8 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         // if (autonomousCommand != null) autonomousCommand.cancel();
-        //driveWithJoystick.start();
-    	driveWithJoystick = (Command) driveChoser.getSelected();
+        
+        driveWithJoystick = (Command) driveChoser.getSelected();
     	driveWithJoystick.start();
         raiseAndLowerElevatorWithJoystick.start();
         openAndCloseClawWithJoystick.start();

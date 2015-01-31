@@ -3,6 +3,8 @@ package org.usfirst.frc.team2815.robot.subsystems;
 import org.usfirst.frc.team2815.robot.RobotMap;
 import org.usfirst.frc.team2815.robot.commands.HDriveWithJoystick;
 
+
+import edu.wpi.first.wpilibj.Encoder;
 //import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Victor;
@@ -25,7 +27,9 @@ public class DriveTrain extends PIDSubsystem {
 	private double lspeed;
 	private double rspeed;
 	private final double ACCEL;
-	//private Encoder encoder;
+	private boolean hyperDrive;
+	private double percentSpeed;
+	private Encoder encoders[] = new Encoder[3];
 	
 	/**
      * This function is run when the class is initialized and should be
@@ -41,7 +45,14 @@ public class DriveTrain extends PIDSubsystem {
 		ACCEL = .1;
 		rspeed = 0;
 		lspeed = 0;
+		hyperDrive = false;
+		for(int i=0; i<encoders.length; i++){
+			encoders[i] = new Encoder(RobotMap.encoder[i], RobotMap.encoderModules[i],false, Encoder.EncodingType.k4X);
+			encoders[i].setDistancePerPulse(4*Math.PI);
+			encoders[i].reset();
+		}
 		//encoder = new Encoder(RobotMap.encoder[0], RobotMap.encoder[1],false, Encoder.EncodingType.k4X);
+		
 		//encoder.setDistancePerPulse(4*Math.PI);
 		//encoder.reset();
 	}
@@ -69,9 +80,9 @@ public class DriveTrain extends PIDSubsystem {
 
 	public void tankDrive(double leftSpeed, double rightSpeed) {
 		for (Victor lv : leftMotors)
-			lv.set(leftSpeed);
+			lv.set(leftSpeed/2);
 		for (Victor rv : rightMotors)
-			rv.set(rightSpeed);
+			rv.set(rightSpeed/2);
 	}
 	/**
 	 * This method takes in two doubles that comprise our arcade drive and sets
@@ -120,7 +131,7 @@ public class DriveTrain extends PIDSubsystem {
 			rspeed += 0.03;
 		}
 		for (Victor lv : leftMotors)
-			lv.set(lspeed);
+			lv.set(lspeed*-1);
 		for (Victor rv : rightMotors)
 			rv.set(rspeed);
 
@@ -174,17 +185,26 @@ public class DriveTrain extends PIDSubsystem {
 			rspeed += 0.03;
 		}
 		for (Victor lv : leftMotors)
-			lv.set(lspeed);
+			lv.set(lspeed*percentSpeed);
 		for (Victor rv : rightMotors)
-			rv.set(rspeed);
-		hDriveMotor.set(hDriveValue);
+			rv.set(rspeed*percentSpeed);
+		hDriveMotor.set(hDriveValue/2);
 
 	}
 	
 	public void setHDriveMotor(double speed){
 		hDriveMotor.set(speed);
 	}
-
+	public void setDriveSpeed(boolean driveSpeed){
+		if(driveSpeed)
+			this.hyperDrive = !this.hyperDrive;
+		
+		if(this.hyperDrive)
+			this.percentSpeed = 1;
+		else
+			this.percentSpeed = .5;
+		
+	}
 	@Override
 	protected double returnPIDInput() {
 		// TODO Auto-generated method stub

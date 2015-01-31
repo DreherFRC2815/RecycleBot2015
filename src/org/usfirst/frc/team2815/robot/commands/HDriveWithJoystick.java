@@ -31,7 +31,7 @@ public class HDriveWithJoystick extends Command {
     protected void execute() {
     	//Robot.driveTrain.enable();
     	//Robot.driveTrain.setSetpoint(3);
-
+    	Robot.driveTrain.setDriveSpeed(Robot.oi.getBoost());
     	Robot.driveTrain.harcadeDrive(Robot.oi.getLeftSpeed(),Robot.oi.getRightSpeed(), Robot.oi.getRightAndLeftTrigger());
     }
 
