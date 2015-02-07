@@ -6,21 +6,18 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * This Command Class lowers the Elevator for a set amount
- * of time using the drive train subsystem from robot and the FPGA
- * time stamp. 
- * 
- * @see Robot
+ *
  */
-public class RaiseElevator extends Command {
+public class TurnLeft extends Command {
+
 	private int state;
 	private double startTime;
-	private final int BOOTING = 0, RAISING_ELEVATOR = 1, FINISHED = 2;
-	private final int RAISE_TIME = 2;
-
-    public RaiseElevator() {
+	private final int BOOTING = 0, DRIVING_FROWARD = 1, FINISHED = 2;
+	private final int DRIVE_TIME = 2;
+    public TurnLeft() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.elevator);
+        // eg. requires(chassis);
+    	requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -34,22 +31,22 @@ public class RaiseElevator extends Command {
     	switch(state) {
 		case BOOTING: 
 			startTime = Timer.getFPGATimestamp();
-			state = RAISING_ELEVATOR;
+			state = DRIVING_FROWARD;
 			break;
-		case RAISING_ELEVATOR:
-			if(Timer.getFPGATimestamp() >= startTime + RAISE_TIME){
-				Robot.elevator.raiseAndLower(0);
+		case DRIVING_FROWARD:
+			if(Timer.getFPGATimestamp() >= startTime + DRIVE_TIME){
+				Robot.driveTrain.tankDrive(0, 0);
 				state = FINISHED;
 				break;
 			}
-			Robot.elevator.raiseAndLower(-1);
+			Robot.driveTrain.tankDrive(0,-.25 );
 			break;
-    	}
+	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-       return (state == FINISHED);
+        return (state == FINISHED);
     }
 
     // Called once after isFinished returns true

@@ -16,7 +16,7 @@ public class LowerElevator extends Command {
 	private int state;
 	private double startTime;
 	private final int BOOTING = 0, LOWER_ELEVATOR = 1, FINISHED = 2;
-	private final int RAISE_TIME = 2;
+	private final double LOWER_TIME = 1.5;
     public LowerElevator() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -37,9 +37,10 @@ public class LowerElevator extends Command {
 			state = LOWER_ELEVATOR;
 			break;
 		case LOWER_ELEVATOR:
-			if(Timer.getFPGATimestamp() >= startTime + RAISE_TIME){
+			if(Timer.getFPGATimestamp() >= startTime + LOWER_TIME){
 				Robot.elevator.raiseAndLower(0);
 				state = FINISHED;
+				break;
 			}
 			Robot.elevator.raiseAndLower(1);
 			break;

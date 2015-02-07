@@ -6,21 +6,19 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * This Command Class lowers the Elevator for a set amount
- * of time using the drive train subsystem from robot and the FPGA
- * time stamp. 
- * 
- * @see Robot
+ *
  */
-public class RaiseElevator extends Command {
+public class IterativeDriveForward extends Command {
 	private int state;
 	private double startTime;
-	private final int BOOTING = 0, RAISING_ELEVATOR = 1, FINISHED = 2;
-	private final int RAISE_TIME = 2;
-
-    public RaiseElevator() {
+	private final int BOOTING = 0, DRIVING_FROWARD = 1, FINISHED = 2;
+	private final double DRIVE_TIME = 4.3;
+	private double iteration;
+	private final double TARGET_ITERATION = .4;
+    public IterativeDriveForward() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.elevator);
+        requires(Robot.driveTrain);
+    	iteration = 0;
     }
 
     // Called just before this Command runs the first time
@@ -32,24 +30,29 @@ public class RaiseElevator extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	switch(state) {
-		case BOOTING: 
-			startTime = Timer.getFPGATimestamp();
-			state = RAISING_ELEVATOR;
-			break;
-		case RAISING_ELEVATOR:
-			if(Timer.getFPGATimestamp() >= startTime + RAISE_TIME){
-				Robot.elevator.raiseAndLower(0);
-				state = FINISHED;
-				break;
-			}
-			Robot.elevator.raiseAndLower(-1);
-			break;
+    		case BOOTING: 
+    			startTime = Timer.getFPGATimestamp();
+    			state = DRIVING_FROWARD;
+    			break;
+    		case DRIVING_FROWARD:
+    			if(Timer.getFPGATimestamp() >= startTime + DRIVE_TIME){
+    				Robot.driveTrain.tankDrive(0, 0);
+    				state = FINISHED;
+    				break;
+    			}
+    			if(TARGET_ITERATION >= iteration ){
+    				Robot.driveTrain.tankDrive(iteration, -1*iteration);
+    				iteration += .1;
+    			}
+    			else
+    				Robot.driveTrain.tankDrive(1, -1);    			
+    			break;
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-       return (state == FINISHED);
+        return (state == FINISHED);
     }
 
     // Called once after isFinished returns true

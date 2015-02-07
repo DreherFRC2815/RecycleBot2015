@@ -43,7 +43,7 @@ public class Strafe extends Command {
     				Robot.driveTrain.setHDriveMotor(0);
     				state = FINISHED;
     			}
-    			Robot.driveTrain.setHDriveMotor(1);
+    			Robot.driveTrain.setHDriveMotor(.25);
     			break;
     			
     			

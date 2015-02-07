@@ -54,6 +54,7 @@ public class Elevator extends Subsystem {
     }
 
 	public void raiseAndLowerWithJoystick(double yValue) {
+		
 		while (this.getLimitSwitchValueTop() == true) {
 			if (yValue < 0) {
 				windowMotors[0].set(0);
@@ -72,6 +73,7 @@ public class Elevator extends Subsystem {
 				windowMotors[1].set(yValue);			
 			}
 		}
+		
 		windowMotors[0].set(yValue);
 		windowMotors[1].set(yValue);  
 

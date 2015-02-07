@@ -21,14 +21,8 @@ public class BasicAuto extends CommandGroup {
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
-    	addSequential(new RaiseElevator());
-    	addSequential(new Strafe());
-    	addSequential(new LowerElevator());
-    	addSequential(new DriveBackward());
-    	addSequential(new LowerElevator());
-    	addSequential(new DriveForward());
-    	addSequential(new RaiseElevator());
-    	addSequential(new DriveForward());
+    	
+    	addSequential(new IterativeDriveForward());
 
 
 

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2815.robot.autocommands.BasicAuto;
+import org.usfirst.frc.team2815.robot.autocommands.FrontOfBoxZoneOne;
 import org.usfirst.frc.team2815.robot.commands.*;
 import org.usfirst.frc.team2815.robot.subsystems.*;
 
@@ -63,8 +64,9 @@ public class Robot extends IterativeRobot {
    		
    		autoChoser = new SendableChooser();
    		autoChoser.addDefault("Basic Auto", new BasicAuto());
-   		
+   		autoChoser.addObject("Right Zone One", new FrontOfBoxZoneOne());
    		SmartDashboard.putData("Autonomous", autoChoser);
+   		
    		
    		raiseAndLowerElevatorWithJoystick = new RaiseAndLowerElevatorWithFlightStick();
    		openAndCloseClawWithJoystick = new OpenAndCloseClawWithJoystick();
@@ -79,6 +81,7 @@ public class Robot extends IterativeRobot {
         // schedule the autonomous command (example)
         // if (autonomousCommand != null) autonomousCommand.start();
     	autonomousCommand = (Command) autoChoser.getSelected();
+    	autonomousCommand.start();
     }
 
     /**

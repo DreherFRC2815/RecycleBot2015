@@ -19,8 +19,8 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
  *@see RobotMap
  */
 public class DriveTrain extends PIDSubsystem {
-	private Victor leftMotors[] = new Victor[2];
-	private Victor rightMotors[] = new Victor[2];
+	private Victor leftMotors;
+	private Victor rightMotors;
 	private Talon hDriveMotor;
 	private double lTarget;
 	private double rTarget;
@@ -29,7 +29,7 @@ public class DriveTrain extends PIDSubsystem {
 	private final double ACCEL;
 	private boolean hyperDrive;
 	private double percentSpeed;
-	private Encoder encoders[] = new Encoder[3];
+	//private Encoder encoders[] = new Encoder[3];
 	
 	/**
      * This function is run when the class is initialized and should be
@@ -37,20 +37,21 @@ public class DriveTrain extends PIDSubsystem {
      */
 	public DriveTrain() {
 		super("Drive Train",1,0,1);
-		leftMotors[0] = new Victor(RobotMap.leftMotors[0]);
-		leftMotors[1] = new Victor(RobotMap.leftMotors[1]);
-		rightMotors[0] = new Victor(RobotMap.rightMotors[0]);
-		rightMotors[1] = new Victor(RobotMap.rightMotors[1]);
+		leftMotors = new Victor(RobotMap.leftMotors);
+		
+		rightMotors = new Victor(RobotMap.rightMotors);
+		
 		hDriveMotor = new Talon(RobotMap.hDriveMotor);
 		ACCEL = .1;
 		rspeed = 0;
 		lspeed = 0;
 		hyperDrive = false;
-		for(int i=0; i<encoders.length; i++){
+		/*for(int i=0; i<encoders.length; i++){
 			encoders[i] = new Encoder(RobotMap.encoder[i], RobotMap.encoderModules[i],false, Encoder.EncodingType.k4X);
 			encoders[i].setDistancePerPulse(4*Math.PI);
 			encoders[i].reset();
 		}
+		*/
 		//encoder = new Encoder(RobotMap.encoder[0], RobotMap.encoder[1],false, Encoder.EncodingType.k4X);
 		
 		//encoder.setDistancePerPulse(4*Math.PI);
@@ -79,10 +80,9 @@ public class DriveTrain extends PIDSubsystem {
 	 */
 
 	public void tankDrive(double leftSpeed, double rightSpeed) {
-		for (Victor lv : leftMotors)
-			lv.set(leftSpeed/2);
-		for (Victor rv : rightMotors)
-			rv.set(rightSpeed/2);
+		 
+			leftMotors.set(leftSpeed/2);
+			rightMotors.set(rightSpeed/2);
 	}
 	/**
 	 * This method takes in two doubles that comprise our arcade drive and sets
@@ -130,10 +130,8 @@ public class DriveTrain extends PIDSubsystem {
 		if (rspeed != 0) {
 			rspeed += 0.03;
 		}
-		for (Victor lv : leftMotors)
-			lv.set(lspeed*-1);
-		for (Victor rv : rightMotors)
-			rv.set(rspeed);
+			leftMotors.set(lspeed*-1);
+			rightMotors.set(rspeed);
 
 	}
 	/**
@@ -184,10 +182,9 @@ public class DriveTrain extends PIDSubsystem {
 		if (rspeed != 0) {
 			rspeed += 0.03;
 		}
-		for (Victor lv : leftMotors)
-			lv.set(lspeed*percentSpeed);
-		for (Victor rv : rightMotors)
-			rv.set(rspeed*percentSpeed);
+		
+		leftMotors.set(lspeed*percentSpeed);
+		rightMotors.set(rspeed*percentSpeed);
 		hDriveMotor.set(hDriveValue/2);
 
 	}

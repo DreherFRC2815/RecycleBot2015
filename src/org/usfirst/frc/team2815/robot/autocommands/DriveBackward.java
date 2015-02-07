@@ -40,8 +40,9 @@ public class DriveBackward extends Command {
 			if(Timer.getFPGATimestamp() >= startTime + DRIVE_TIME){
 				Robot.driveTrain.tankDrive(0, 0);
 				state = FINISHED;
+				break;
 			}
-			Robot.driveTrain.tankDrive(-1, -1);
+			Robot.driveTrain.tankDrive(-.75, .75);
 			break;
 	}
     }

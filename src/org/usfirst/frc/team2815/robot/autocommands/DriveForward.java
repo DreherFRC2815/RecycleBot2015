@@ -16,7 +16,7 @@ public class DriveForward extends Command {
 	private int state;
 	private double startTime;
 	private final int BOOTING = 0, DRIVING_FROWARD = 1, FINISHED = 2;
-	private final int DRIVE_TIME = 2;
+	private final double DRIVE_TIME = 2;
     public DriveForward() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
@@ -40,8 +40,9 @@ public class DriveForward extends Command {
     			if(Timer.getFPGATimestamp() >= startTime + DRIVE_TIME){
     				Robot.driveTrain.tankDrive(0, 0);
     				state = FINISHED;
+    				break;
     			}
-    			Robot.driveTrain.tankDrive(1, 1);
+    			Robot.driveTrain.tankDrive(0.75, -0.75);
     			break;
     	}
     }
