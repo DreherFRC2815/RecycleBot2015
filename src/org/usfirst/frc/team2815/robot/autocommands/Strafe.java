@@ -16,14 +16,15 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Strafe extends Command {
 	private int state;
 	private double startTime;
-	private final int STRAFE_TIME = 2;
+	private final double STRAFE_TIME;//STRAFE_TIME is 2
 	private final int BOOTING = 0, STRAFEING = 1, FINISHED = 2;
 	
 	
-    public Strafe() {
+    public Strafe(double time) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
+    	STRAFE_TIME = time;
     }
 
     // Called just before this Command runs the first time

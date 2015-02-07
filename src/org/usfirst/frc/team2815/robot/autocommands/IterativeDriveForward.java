@@ -12,13 +12,14 @@ public class IterativeDriveForward extends Command {
 	private int state;
 	private double startTime;
 	private final int BOOTING = 0, DRIVING_FROWARD = 1, FINISHED = 2;
-	private final double DRIVE_TIME = 4.3;
+	private final double DRIVE_TIME; //DRIVE_TIME is 4.3
 	private double iteration;
 	private final double TARGET_ITERATION = .4;
-    public IterativeDriveForward() {
+    public IterativeDriveForward(double time) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
     	iteration = 0;
+    	DRIVE_TIME = time;
     }
 
     // Called just before this Command runs the first time

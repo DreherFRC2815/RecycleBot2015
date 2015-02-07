@@ -16,11 +16,11 @@ public class DriveForward extends Command {
 	private int state;
 	private double startTime;
 	private final int BOOTING = 0, DRIVING_FROWARD = 1, FINISHED = 2;
-	private final double DRIVE_TIME = 2;
-    public DriveForward() {
+	private final double DRIVE_TIME; //DRIVE_TIME is 2
+    public DriveForward(double time) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
-    	
+        DRIVE_TIME = time;
     }
 
     // Called just before this Command runs the first time

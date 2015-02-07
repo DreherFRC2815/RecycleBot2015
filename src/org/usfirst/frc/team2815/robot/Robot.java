@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2815.robot.autocommands.BasicAuto;
+import org.usfirst.frc.team2815.robot.autocommands.FrontOfBoxZoneFour;
 import org.usfirst.frc.team2815.robot.autocommands.FrontOfBoxZoneOne;
 import org.usfirst.frc.team2815.robot.commands.*;
 import org.usfirst.frc.team2815.robot.subsystems.*;
@@ -63,8 +64,9 @@ public class Robot extends IterativeRobot {
    		SmartDashboard.putData("Drive Types", driveChoser);
    		
    		autoChoser = new SendableChooser();
-   		autoChoser.addDefault("Basic Auto", new BasicAuto());
+   		autoChoser.addDefault("Test Auto", new BasicAuto());
    		autoChoser.addObject("Right Zone One", new FrontOfBoxZoneOne());
+   		autoChoser.addObject("Left Zone Four", new FrontOfBoxZoneFour());
    		SmartDashboard.putData("Autonomous", autoChoser);
    		
    		

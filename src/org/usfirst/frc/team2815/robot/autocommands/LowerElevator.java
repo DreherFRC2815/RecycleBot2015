@@ -16,11 +16,12 @@ public class LowerElevator extends Command {
 	private int state;
 	private double startTime;
 	private final int BOOTING = 0, LOWER_ELEVATOR = 1, FINISHED = 2;
-	private final double LOWER_TIME = 1.5;
-    public LowerElevator() {
+	private final double LOWER_TIME;//LOWER_TIME is 1.5
+    public LowerElevator(double time) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.elevator);
+    	LOWER_TIME = time;
     }
 
     // Called just before this Command runs the first time

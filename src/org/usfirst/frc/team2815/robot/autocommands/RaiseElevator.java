@@ -16,11 +16,12 @@ public class RaiseElevator extends Command {
 	private int state;
 	private double startTime;
 	private final int BOOTING = 0, RAISING_ELEVATOR = 1, FINISHED = 2;
-	private final int RAISE_TIME = 2;
+	private final double RAISE_TIME; //RAISE_TIME is 2
 
-    public RaiseElevator() {
+    public RaiseElevator(double time) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.elevator);
+        RAISE_TIME = time;
     }
 
     // Called just before this Command runs the first time

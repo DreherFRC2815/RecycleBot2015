@@ -16,11 +16,12 @@ public class DriveBackward extends Command {
 	private int state;
 	private double startTime;
 	private final int BOOTING = 0, DRIVING_FROWARD = 1, FINISHED = 2;
-	private final int DRIVE_TIME = 2;
-    public DriveBackward() {
+	private final double DRIVE_TIME;//DRIVE_TIME is 2
+    public DriveBackward(double time) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
+    		DRIVE_TIME = time;
     }
 
     // Called just before this Command runs the first time
