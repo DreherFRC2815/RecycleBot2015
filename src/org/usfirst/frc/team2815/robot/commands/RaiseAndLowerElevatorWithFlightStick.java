@@ -36,7 +36,7 @@ public class RaiseAndLowerElevatorWithFlightStick extends Command {
      * robot class to get the y value of the Joystick. 
      */
     protected void execute() {
-    	Robot.elevator.raiseAndLower(Robot.oi.getYspeed());
+    	Robot.elevator.raiseAndLowerWithJoystick(Robot.oi.getYspeed());
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -54,28 +54,28 @@ public class Elevator extends Subsystem {
     }
 
 	public void raiseAndLowerWithJoystick(double yValue) {
-		
-		while (this.getLimitSwitchValueTop() == true) {
-			if (yValue < 0) {
+		if(!this.getLimitSwitchValueBot()){
+			if(yValue > 0){
 				windowMotors[0].set(0);
-				windowMotors[1].set(0);
-			} else {
-				windowMotors[0].set(yValue);
-				windowMotors[1].set(yValue);
-			}
-		}
-		while (this.getLimitSwitchValueBot() == true) {
-			if (yValue > 0) {
-				windowMotors[0].set(0);
-				windowMotors[1].set(0);
+		    	windowMotors[1].set(0);
 			}else{
 				windowMotors[0].set(yValue);
-				windowMotors[1].set(yValue);			
+		    	windowMotors[1].set(yValue);
+			}
+		}else if(!this.getLimitSwitchValueTop()){
+			if(yValue < 0){
+				windowMotors[0].set(0);
+		    	windowMotors[1].set(0);
+			}else{
+				windowMotors[0].set(yValue);
+		    	windowMotors[1].set(yValue);
 			}
 		}
+		else{
+			windowMotors[0].set(yValue);
+	    	windowMotors[1].set(yValue);
+		}
 		
-		windowMotors[0].set(yValue);
-		windowMotors[1].set(yValue);  
 
 	}
 

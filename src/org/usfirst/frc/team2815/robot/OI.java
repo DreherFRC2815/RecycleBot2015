@@ -15,6 +15,7 @@ public class OI {
     Button button1 = new JoystickButton(flight, 4);
     Button button2 = new JoystickButton(flight, 5);
     Button hyperBoost = new JoystickButton(xbox, 2);
+    Button slowButton = new JoystickButton(xbox,4);
     /**
      * @return double returns the value of the left stick y-axis of the Xbox controller at port 1 w/ correction for dead zone
      */
@@ -92,6 +93,9 @@ public class OI {
     public boolean getBoost(){
     
     	return hyperBoost.get();
+    }
+    public boolean getSlow(){
+    	return slowButton.get();
     }
 
 }

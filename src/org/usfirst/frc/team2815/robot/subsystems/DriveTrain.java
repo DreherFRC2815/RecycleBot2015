@@ -28,6 +28,7 @@ public class DriveTrain extends PIDSubsystem {
 	private double rspeed;
 	private final double ACCEL;
 	private boolean hyperDrive;
+	private boolean slowSpeed;
 	private double percentSpeed;
 	//private Encoder encoders[] = new Encoder[3];
 	
@@ -192,12 +193,15 @@ public class DriveTrain extends PIDSubsystem {
 	public void setHDriveMotor(double speed){
 		hDriveMotor.set(speed);
 	}
-	public void setDriveSpeed(boolean driveSpeed){
+	public void setDriveSpeed(boolean driveSpeed,boolean slowSpeed){
 		if(driveSpeed)
 			this.hyperDrive = !this.hyperDrive;
-		
+		if(slowSpeed)
+			this.slowSpeed = !this.slowSpeed;
 		if(this.hyperDrive)
 			this.percentSpeed = 1;
+		else if(this.slowSpeed)
+			this.percentSpeed = .333;
 		else
 			this.percentSpeed = .5;
 		

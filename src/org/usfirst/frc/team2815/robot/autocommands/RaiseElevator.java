@@ -38,7 +38,7 @@ public class RaiseElevator extends Command {
 			state = RAISING_ELEVATOR;
 			break;
 		case RAISING_ELEVATOR:
-			if(Timer.getFPGATimestamp() >= startTime + RAISE_TIME){
+			if(Timer.getFPGATimestamp() >= startTime + RAISE_TIME || !Robot.elevator.getLimitSwitchValueTop()){
 				Robot.elevator.raiseAndLower(0);
 				state = FINISHED;
 				break;

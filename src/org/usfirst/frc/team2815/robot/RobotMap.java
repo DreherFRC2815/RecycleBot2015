@@ -14,8 +14,8 @@ public class RobotMap {
 	public static int windowMotor[] = {3,4};
 	public static int hDriveMotor = 2;
 	public static int clawPiston[] = {0,1};
-	public static int encoder[] = {0,2,4};
-	public static int encoderModules[] = {1,3,5};
-	public static int elevatorSwitch[] ={6,7}; 
+	//public static int encoder[] = {0,2,4};
+	//public static int encoderModules[] = {1,3,5};
+	public static int elevatorSwitch[] ={0,1}; 
 	
 }
