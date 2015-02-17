@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.image.NIVisionException;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.vision.USBCamera;
 
 import org.usfirst.frc.team2815.robot.autocommands.BasicAuto;
 import org.usfirst.frc.team2815.robot.autocommands.FrontOfBoxZoneFour;
@@ -54,7 +55,8 @@ public class Robot extends IterativeRobot {
 
 	int session;
 	Image frame;
-
+	//ImageAnalysis imageAnalysis;
+	CameraServer server= CameraServer.getInstance();
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -80,13 +82,18 @@ public class Robot extends IterativeRobot {
 		raiseAndLowerElevatorWithJoystick = new RaiseAndLowerElevatorWithFlightStick();
 		openAndCloseClawWithJoystick = new OpenAndCloseClawWithJoystick();
 
-		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB,0);
 
 		// the camera name (ex "cam0") can be found through the roborio web
 		// interface
 		session = NIVision.IMAQdxOpenCamera("cam0",
 				NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-
+		//CameraServer server = CameraServer.getInstance();
+		
+		//server.startAutomaticCapture("cam0");
+		 //imageAnalysis = new ImageAnalysis(session,frame);
+		//image.start();
+		
 	}
 
 	public void disabledPeriodic() {
@@ -119,6 +126,8 @@ public class Robot extends IterativeRobot {
 		raiseAndLowerElevatorWithJoystick.start();
 		openAndCloseClawWithJoystick.start();
 		NIVision.IMAQdxConfigureGrab(session);
+		
+		
 	}
 
 	/**
@@ -126,28 +135,40 @@ public class Robot extends IterativeRobot {
 	 * to reset subsystems before shutting down.
 	 */
 	public void disabledInit() {
-		NIVision.IMAQdxStopAcquisition(session);
+		//NIVision.IMAQdxStopAcquisition(session);
 	}
-
+	int i = 0;
 	/**
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
-		
-		// NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
-		NIVision.IMAQdxGrab(session, frame, 1);
-		// NIVision.imaqDrawShapeOnImage(frame, frame, rect,
-		// DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);
-
-		CameraServer.getInstance().setImage(frame);
 		Scheduler.getInstance().run();
+		// NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
+				
+				
+				//NIVision.imaqDrawShapeOnImage(frame, frame, rect,
+						//DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f)
+				//CameraServer.getInstance().setImage(frame);
+		if(i > 2){
+			NIVision.IMAQdxGrab(session, frame, 1);
 
+			server.setSize(2);	
+
+			server.setImage(frame);
+			i = 0;
+		}
+		i++;
 	}
 
 	/**
 	 * This function is called periodically during test mode
-	 */
+//	 */
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
 }
+
+
+
+
+

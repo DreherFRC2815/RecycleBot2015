@@ -13,8 +13,9 @@ public class FrontOfBoxZoneFour extends CommandGroup {
         //      addSequential(new Command2());
         // these will run in order.
     	addSequential(new DriveForward(2));
-    	addSequential(new IterativeDriveForward(2));
     	addParallel(new RaiseElevator(2));
+    	addSequential(new IterativeDriveForward(3,1,1));
+    	
     	//addSequential(new TurnRight(1));
     	//addSequential(new LowerElevator(1.5));
     	//addSequential(new DriveBackward(1));

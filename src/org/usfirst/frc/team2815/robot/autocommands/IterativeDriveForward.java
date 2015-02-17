@@ -15,11 +15,15 @@ public class IterativeDriveForward extends Command {
 	private final double DRIVE_TIME; //DRIVE_TIME is 4.3
 	private double iteration;
 	private final double TARGET_ITERATION = .4;
-    public IterativeDriveForward(double time) {
+	double speedLEdit;
+	double speedREdit;
+    public IterativeDriveForward(double time,double speedLEdit, double speedREdit) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
     	iteration = 0;
     	DRIVE_TIME = time;
+    	this.speedLEdit = speedLEdit;
+    	this.speedREdit = speedREdit;
     }
 
     // Called just before this Command runs the first time
@@ -46,7 +50,7 @@ public class IterativeDriveForward extends Command {
     				iteration += .1;
     			}
     			else
-    				Robot.driveTrain.tankDrive(1, -1);    			
+    				Robot.driveTrain.tankDrive(1*speedLEdit, -1*speedREdit);    			
     			break;
     	}
     }

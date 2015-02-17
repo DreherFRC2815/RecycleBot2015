@@ -22,7 +22,7 @@ public class BasicAuto extends CommandGroup {
         //      addSequential(new Command2());
         // these will run in order.
     	
-    	addSequential(new IterativeDriveForward(3));
+    	//addSequential(new IterativeDriveForward(3));
 
 
 

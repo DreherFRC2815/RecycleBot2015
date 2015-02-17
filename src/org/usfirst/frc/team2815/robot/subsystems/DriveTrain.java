@@ -186,7 +186,7 @@ public class DriveTrain extends PIDSubsystem {
 		
 		leftMotors.set(lspeed*percentSpeed);
 		rightMotors.set(rspeed*percentSpeed);
-		hDriveMotor.set(hDriveValue/2);
+		hDriveMotor.set(hDriveValue*.5);
 
 	}
 	
